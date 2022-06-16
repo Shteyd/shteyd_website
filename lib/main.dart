@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shteyd_site/presentation/route/route.dart';
+import 'package:shteyd_site/presentation/builders/builder.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
@@ -12,9 +12,14 @@ class ShteydWebsite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      initialRoute: RouteManager.home,
-      onGenerateRoute: RouteManager.generateRoute,
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        "/": (context) => const HomePage(),
+        "/skills-and-experience": (context) => const SkillsAndExperiencePage(),
+        "/about": (context) => const AboutPage(),
+        "/social-media": (context) => const SocialMedia(),
+      },
     );
   }
 }

@@ -16,9 +16,6 @@ class ShteydWebsite extends StatelessWidget {
       initialRoute: '/',
       routes: {
         "/": (context) => const HomePage(),
-        "/skills-and-experience": (context) => const SkillsAndExperiencePage(),
-        "/about": (context) => const AboutPage(),
-        "/social-media": (context) => const SocialMedia(),
       },
     );
   }

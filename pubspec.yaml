@@ -12,11 +12,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
   url_strategy: ^0.2.0
   google_fonts: ^3.0.1
   flutter_hooks: ^0.18.4
-  rxdart: ^0.27.4
+  url_launcher: ^6.1.3
+  flutter_svg: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +26,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-  assets:
-    - assets/

@@ -8,7 +8,7 @@ class BaseContainer extends StatelessWidget {
   const BaseContainer({
     Key? key,
     this.child,
-    this.color = Colors.white,
+    this.color = Colors.black,
     this.scale = 1.0,
   }) : super(key: key);
 

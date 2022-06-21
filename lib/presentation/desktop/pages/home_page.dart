@@ -1,93 +1,117 @@
 part of '../desktop.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int clickValue = 0;
+
+  void _clickButton() {
+    if (clickValue == 4) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const AlertDialog(
+            title: Text("Wow! Yes, it's an Easter egg!"),
+            content: Text(
+              'How did my username "Shteyd" come about? It\'s very '
+              'simple: Shteyd -> Штеуд -> Intel '
+              '(look at the keyboard when typing :D)',
+            ),
+            alignment: Alignment.topCenter,
+          );
+        },
+      );
+
+      setState(() => clickValue = 0);
+    }
+
+    setState(() => clickValue++);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Skeleton(
       children: [
         BaseContainer(
-          child: Stack(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
-                child: Column(
-                  children: [
-                    const CustomAppBar(),
-                    Expanded(
-                      child: Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () => _clickButton(),
+                    child: Text.rich(
+                      TextSpan(
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Hi! I Am',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 52,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 60),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 5,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      color: Colors.blue,
-                                    ),
-                                    child: Text(
-                                      'MOBILE',
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 26,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                'Nikita Gorobets',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 52,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const SizedBox(height: 50),
-                            ],
+                          TextSpan(
+                            text: 'SHTEYD',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 150,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 25),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Image.asset("assets/me.png"),
+                          TextSpan(
+                            text: '.',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 150,
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: 5,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Text(
-                    '@Shteyd (c) 2021-2022',
-                    style: GoogleFonts.openSans(
-                      color: Colors.grey,
+                  ),
+                  Text(
+                    'Hello, dear friend!',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 24,
+                      color: Colors.white,
                     ),
                   ),
-                ),
+                  Text(
+                    'You\'re here for a reason',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'Maybe, these links can help you',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  Row(
+                    children: const [
+                      SocialMediaButton(
+                        text: 'VK',
+                        url: 'https://vk.me/Shteyd',
+                      ),
+                      SizedBox(width: 10),
+                      SocialMediaButton(
+                        text: 'TG',
+                        url: 'https://t.me/Shteyd',
+                      ),
+                      SizedBox(width: 10),
+                      SocialMediaButton(
+                        text: 'Git',
+                        url: 'https://github.com/Shteyd',
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                ],
               ),
             ],
           ),
